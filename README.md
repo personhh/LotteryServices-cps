@@ -4,3 +4,5 @@ Lottery抽奖系统架构
 -domain：领域层
 -infrastructure：基础层
 -interfaces：接口层
+
+分支处理测试3-6-cps-franch
