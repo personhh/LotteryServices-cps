@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    username: root
+    password: 52ni1314
+    url: jdbc:mysql://127.0.0.1:3306/lottery?useUnicode=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+mybatis:
+    mapper-locations: classpath:/mybatis/mapper/*.xml
+    config-location: classpath:/mybatis/config/mybatis-config.xml
+
+
+dubbo:
+  application: #配置应用名称和版本
+    name: Lottery
+    version: 1.0.0
+
+  registry:
+    address: N/A  #暂时采用直连的方式
+
+  protocol: #配置的通信协议和端口
+    name: dubbo
+    port: 20881
+
+  scan: #相当Spring中自动扫描包的地址，可以把此包下的所以rpc接口都注册到服务中
+    base-packages: com.cps.lottery.rpc
