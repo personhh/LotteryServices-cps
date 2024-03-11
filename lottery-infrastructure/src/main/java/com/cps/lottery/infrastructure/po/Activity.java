@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  * @author cps
- * @description: TODO
+ * @description: 活动表对应的实体
  * @date 2024/3/7 15:40
  * @OtherDescription: Other things
  */

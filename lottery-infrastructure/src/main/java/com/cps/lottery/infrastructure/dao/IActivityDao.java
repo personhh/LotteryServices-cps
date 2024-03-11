@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 /**
  * @author cps
- * @description: TODO
+ * @description: 活动表对应持久化接口
  * @date 2024/3/7 15:40
  * @OtherDescription: Other things
  */
