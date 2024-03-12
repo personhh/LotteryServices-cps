@@ -3,6 +3,8 @@ package com.cps.lottery.domain.strategy.repository;
 import com.cps.lottery.domain.strategy.model.aggregates.StrategyRich;
 import com.cps.lottery.infrastructure.po.Award;
 
+import java.util.List;
+
 /**
  * @author cps
  * @description: TODO
@@ -16,4 +18,10 @@ public interface IStrategyRepository {
 
     /**查询奖品*/
     Award queryAwardInfo(String awardId);
+
+    /**查询空库存的策略奖品列表*/
+    List<String> queryNoStockStrategyAwardList(Long strategyId);
+
+    /**扣减库存*/
+    boolean deductStock(Long strategyId, String awardId);
 }

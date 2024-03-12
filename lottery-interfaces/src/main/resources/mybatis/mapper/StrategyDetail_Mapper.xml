@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cps.lottery.infrastructure.dao.IStrategyDetail">
+<mapper namespace="com.cps.lottery.infrastructure.dao.IStrategyDetailDao">
 
     <resultMap id="strategyDetailMap" type="com.cps.lottery.infrastructure.po.StrategyDetail">
         <id column="id" property="id"/>
@@ -19,5 +19,16 @@
         WHERE strategy_Id = #{strategyId}
     </select>
 
+
+    <select id="queryNoStockStrategyAwardList" parameterType="java.lang.Long" resultType="java.lang.String">
+        SELECT award_Id
+        FROM strategy_detail
+        WHERE strategy_id = #{strategyId} AND award_surplus_count = 0;
+    </select>
+
+    <update id="deductStock" parameterType="com.cps.lottery.infrastructure.po.StrategyDetail">
+        UPDATE  strategy_detail SET award_surplus_count = award_surplus_count - 1
+        WHERE strategy_id = #{strategyId} AND award_id = #{awardId} AND award_surplus_count > 0
+    </update>
 
 </mapper>

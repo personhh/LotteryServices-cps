@@ -30,4 +30,75 @@ public class Constants {
             return info;
         }
     }
+
+    /**
+     * 抽奖策略模式：总体概率、单项概率
+     * -场景A：10%、B：40%、C:50%
+     * 单项概率：如果A抽空之后，B和C的概率不变，依然分别占总值的40%、50%,而剩下的10%则为未中奖
+     * 总体概率：如果A抽空之后，B和C的奖品概率发生变化，占剩余奖品概率的4/（4+5）、5/（4+5），就是B奖品和C奖品按照4:5的比例
+     * */
+    public enum StrategyMode {
+        SINGLE(1, "单项概率"),
+
+        ENTIRETY(2, "总体概率");
+
+        private Integer code;
+        private String info;
+
+
+        StrategyMode(Integer code, String info) {
+            this.code = code;
+            this.info = info;
+        }
+
+        public Integer getCode() {
+            return code;
+        }
+
+        public void setCode(Integer code) {
+            this.code = code;
+        }
+
+        public String getInfo() {
+            return info;
+        }
+
+        public void setInfo(String info) {
+            this.info = info;
+        }
+    }
+
+
+    /** 中奖状态：0未中奖、1已中奖、2兜底奖  */
+    public enum DrawState{
+        FAIL(0,"未中奖"),
+        SUCCESS(1,"中奖"),
+        COVER(2,"兜底奖");
+
+
+        private Integer code;
+        private String info;
+
+        DrawState(Integer code, String info) {
+            this.code = code;
+            this.info = info;
+        }
+
+        public Integer getCode() {
+            return code;
+        }
+
+        public void setCode(Integer code) {
+            this.code = code;
+        }
+
+        public String getInfo() {
+            return info;
+        }
+
+        public void setInfo(String info) {
+            this.info = info;
+        }
+    }
+
 }

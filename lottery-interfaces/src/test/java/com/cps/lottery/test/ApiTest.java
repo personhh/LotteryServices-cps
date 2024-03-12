@@ -6,7 +6,7 @@ import com.cps.lottery.domain.strategy.service.draw.IDrawExec;
 import com.cps.lottery.infrastructure.dao.IActivityDao;
 
 import com.cps.lottery.infrastructure.dao.IStrategyDao;
-import com.cps.lottery.infrastructure.dao.IStrategyDetail;
+import com.cps.lottery.infrastructure.dao.IStrategyDetailDao;
 import com.cps.lottery.infrastructure.po.Activity;
 import com.cps.lottery.infrastructure.po.Strategy;
 import com.cps.lottery.infrastructure.po.StrategyDetail;
@@ -18,7 +18,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
-import java.security.SecureRandom;
 import java.util.Date;
 import java.util.List;
 
@@ -42,7 +41,7 @@ public class ApiTest {
     IStrategyDao strategyDao;
 
     @Resource
-    IStrategyDetail strategyDetail;
+    IStrategyDetailDao strategyDetail;
 
     @Resource
     private IDrawExec drawExec;

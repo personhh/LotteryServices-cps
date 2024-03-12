@@ -16,8 +16,8 @@ import java.util.List;
  * @OtherDescription: Other things
  */
 
-@Component("defaultRateRandomDrawAlgorithm")
-public class DefaultRateRandomDrawAlgorithm extends BaseAlgorithm {
+@Component("entiretyRateRandomDrawAlgorithm")
+public class EntiretyRateRandomDrawAlgorithm extends BaseAlgorithm {
 
     @Override
     public String randomDraw(Long strategyId, List<String> excludeAwardIds) {
@@ -45,15 +45,18 @@ public class DefaultRateRandomDrawAlgorithm extends BaseAlgorithm {
 
 
         //前置判断
-        if(differenceAwardRateList.size() == 0) return "";
-        if(differenceAwardRateList.size() == 1) return differenceAwardRateList.get(0).getAwardId();
+        if(differenceAwardRateList.size() == 0) {
+            return null;
+        }
+        if(differenceAwardRateList.size() == 1) {
+            return differenceAwardRateList.get(0).getAwardId();
+        }
 
         //获取随机概率值
-        SecureRandom secureRandom = new SecureRandom();
-        int randomVal = secureRandom.nextInt(100) + 1;
+        int randomVal = this.generateSecureRandomIntCode(100);
 
         //循环获取奖品
-        String awardId = "";
+        String awardId = null;
         int cursorVal = 0;
         for(AwardRateInfo awardRateInfo : differenceAwardRateList){
             //此时在新集合中的奖品概率
