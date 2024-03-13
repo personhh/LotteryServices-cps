@@ -27,7 +27,6 @@ public class DrawAlgorithmTest {
     @Resource(name = "singleRateRandomDrawAlgorithm")
     private IDrawAlgorithm drawAlgorithm;
 
-    @Before
     public void init(){
         //奖品信息
         List<AwardRateInfo> strategyList = new ArrayList<>();
