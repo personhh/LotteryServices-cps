@@ -49,5 +49,18 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.78</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.8</version>
+        </dependency>
+
+        <!--用来生成雪花算法之类的工具包-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.5.0</version>
+        </dependency>
     </dependencies>
 </project>

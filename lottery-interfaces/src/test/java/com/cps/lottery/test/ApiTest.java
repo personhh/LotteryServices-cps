@@ -3,6 +3,7 @@ package com.cps.lottery.test;
 import com.cps.lottery.domain.activity.model.aggregates.ActivityConfigRich;
 import com.cps.lottery.domain.activity.model.req.ActivityConfigReq;
 import com.cps.lottery.domain.activity.service.deploy.IActivityDeploy;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -14,7 +15,7 @@ import javax.annotation.Resource;
 
 /**
  * @author cps
- * @description: TODO
+ * @description: 临时测试一下
  * @date 2024/3/7 16:11
  * @OtherDescription: Other things
  */
@@ -32,5 +33,10 @@ public class ApiTest {
     private ActivityConfigRich activityConfigRich;
 
     private Long activityId = 12353567L;
+
+    @Test
+    public void test_other(){
+        System.out.println(Long.parseLong(RandomStringUtils.randomNumeric(11)));
+    }
 
 }

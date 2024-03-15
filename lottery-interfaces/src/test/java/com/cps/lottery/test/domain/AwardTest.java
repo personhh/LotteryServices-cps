@@ -21,7 +21,7 @@ import javax.annotation.Resource;
 
 /**
  * @author cps
- * @description: TODO
+ * @description: 奖品模块测试
  * @date 2024/3/15 11:10
  * @OtherDescription: Other things
  */

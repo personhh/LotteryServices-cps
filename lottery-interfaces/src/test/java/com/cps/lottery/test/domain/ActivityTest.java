@@ -28,7 +28,7 @@ import java.util.List;
 
 /**
  * @author cps
- * @description: TODO
+ * @description: 活动模块测试
  * @date 2024/3/15 11:09
  * @OtherDescription: Other things
  */

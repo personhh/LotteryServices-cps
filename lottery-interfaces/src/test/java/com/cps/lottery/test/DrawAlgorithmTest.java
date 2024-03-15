@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * @author cps
- * @description: TODO
+ * @description: 抽奖策略业务功能测试
  * @date 2024/3/11 15:31
  * @OtherDescription: Other things
  */
@@ -50,4 +50,6 @@ public class DrawAlgorithmTest {
              System.out.println("中奖结果：" + drawAlgorithm.randomDraw(100001L, excludeAwardIds));
          }
     }
+
+
 }
