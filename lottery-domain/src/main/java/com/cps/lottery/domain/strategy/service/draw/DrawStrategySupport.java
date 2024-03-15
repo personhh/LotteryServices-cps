@@ -1,8 +1,8 @@
 package com.cps.lottery.domain.strategy.service.draw;
 
 import com.cps.lottery.domain.strategy.model.aggregates.StrategyRich;
+import com.cps.lottery.domain.strategy.model.vo.AwardBriefVO;
 import com.cps.lottery.domain.strategy.repository.IStrategyRepository;
-import com.cps.lottery.infrastructure.po.Award;
 
 import javax.annotation.Resource;
 
@@ -28,7 +28,7 @@ public class DrawStrategySupport extends DrawConfig{
      * 查询奖品详情信息
      */
 
-    protected Award queryAwardInfoByAwardId(String awardId){
+    protected AwardBriefVO queryAwardInfoByAwardId(String awardId){
         return strategyRepository.queryAwardInfo(awardId);
     }
 }

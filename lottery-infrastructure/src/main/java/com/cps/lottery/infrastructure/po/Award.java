@@ -27,6 +27,18 @@ public class Award {
     /**更新时间*/
     private Date updateTime;
 
+    public Award() {
+    }
+
+    /*主要用来测试一下mapper中的方法
+    public Award(String awardId, Integer awardType, String awardName, Integer awardCount, String awardContent) {
+        this.awardId = awardId;
+        this.awardType = awardType;
+        this.awardName = awardName;
+        this.awardCount = awardCount;
+        this.awardContent = awardContent;
+    }*/
+
     public Long getId() {
         return id;
     }

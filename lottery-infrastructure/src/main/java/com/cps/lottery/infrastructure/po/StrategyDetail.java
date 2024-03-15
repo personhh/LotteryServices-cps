@@ -37,6 +37,20 @@ public class StrategyDetail {
     // 修改时间
     private String updateTime;
 
+    public StrategyDetail() {
+    }
+
+    /*便于测试用，和业务关联不大
+    public StrategyDetail(Long strategyId, String awardId, String awardName, String awardCount, Integer awardSurplusCount, BigDecimal awardRate) {
+        this.strategyId = strategyId;
+        this.awardId = awardId;
+        this.awardName = awardName;
+        this.awardCount = awardCount;
+        this.awardSurplusCount = awardSurplusCount;
+        this.awardRate = awardRate;
+
+    }*/
+
     public String getId() {
         return id;
     }
