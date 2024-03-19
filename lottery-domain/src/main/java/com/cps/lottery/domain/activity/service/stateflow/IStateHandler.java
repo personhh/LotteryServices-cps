@@ -5,7 +5,7 @@ import com.cps.lottery.common.Result;
 
 /**
  * @author cps
- * @description: TODO
+ * @description: 状态处理接口
  * @date 2024/3/15 12:01
  * @OtherDescription: Other things
  */
