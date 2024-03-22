@@ -1,10 +1,8 @@
 package com.cps.lottery.domain.activity.repository;
 
 import com.cps.lottery.common.Constants;
-import com.cps.lottery.domain.activity.model.vo.ActivityVO;
-import com.cps.lottery.domain.activity.model.vo.AwardVO;
-import com.cps.lottery.domain.activity.model.vo.StrategyDetailVO;
-import com.cps.lottery.domain.activity.model.vo.StrategyVO;
+import com.cps.lottery.domain.activity.model.req.PartakeReq;
+import com.cps.lottery.domain.activity.model.vo.*;
 
 import java.util.List;
 
@@ -39,4 +37,18 @@ public interface IActivityRepository {
      * 变更活动状态
      */
     boolean alterState(Long activeId, Enum<Constants.ActivityState> beforeState, Enum<Constants.ActivityState> afterState);
+
+    /**
+     * 查询活动账单信息【库存、状态、日期、个人参与次数】
+     * @param req 参与活动请求
+     * @return    活动账单
+     */
+    ActivityBillVO queryActivityBill(PartakeReq req);
+
+    /**
+     * 扣减活动库存
+     * @param activityId   活动ID
+     * @return      扣减结果
+     */
+    int subtractionActivityStock(Long activityId);
 }

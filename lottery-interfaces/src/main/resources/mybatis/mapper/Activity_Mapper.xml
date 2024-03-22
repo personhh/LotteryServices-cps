@@ -40,4 +40,9 @@
         SET state = #{afterState}
         WHERE activity_id = #{activityId} AND state =#{beforeState}
     </update>
+
+    <update id="subtractionActivityStock" parameterType="java.lang.Long">
+        UPDATE activity SET stock_surplus_count = stock_surplus_count - 1
+        WHERE activity_id = #{activityId} AND stock_surplus_count > 0
+    </update>
 </mapper>

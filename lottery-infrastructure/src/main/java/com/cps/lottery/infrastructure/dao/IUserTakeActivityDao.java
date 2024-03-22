@@ -1,7 +1,11 @@
 package com.cps.lottery.infrastructure.dao;
 
+
 import cn.bugstack.middleware.db.router.annotation.DBRouter;
 import com.cps.lottery.infrastructure.po.UserTakeActivity;
+
+
+import com.cps.lottery.infrastructure.po.UserTakeActivityCount;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -18,6 +22,6 @@ public interface IUserTakeActivityDao {
      *
      * @param userTakeActivity 入参
      */
-    @DBRouter(key = "uId")
+    //@DBRouter(key = "uId")
     void insert(UserTakeActivity userTakeActivity);
 }

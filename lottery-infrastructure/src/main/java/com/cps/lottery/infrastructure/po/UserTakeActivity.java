@@ -37,6 +37,16 @@ public class UserTakeActivity {
      * 领取次数
      */
     private Integer takeCount;
+
+    /**
+     * 策略Id
+     */
+    private Long strategyId;
+    /**
+     * 状态码
+     */
+    private Integer state;
+
     /**
      * 防重ID
      */
@@ -105,6 +115,22 @@ public class UserTakeActivity {
 
     public void setTakeCount(Integer takeCount) {
         this.takeCount = takeCount;
+    }
+
+    public Long getStrategyId() {
+        return strategyId;
+    }
+
+    public void setStrategyId(Long strategyId) {
+        this.strategyId = strategyId;
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
     }
 
     public String getUuid() {

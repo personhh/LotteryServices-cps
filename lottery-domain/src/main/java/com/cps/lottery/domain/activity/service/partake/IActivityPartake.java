@@ -1,5 +1,8 @@
 package com.cps.lottery.domain.activity.service.partake;
 
+import com.cps.lottery.domain.activity.model.req.PartakeReq;
+import com.cps.lottery.domain.activity.model.res.PartakeResult;
+
 /**
  * @author cps
  * @description: 抽奖活动参与接口
@@ -9,7 +12,10 @@ package com.cps.lottery.domain.activity.service.partake;
 public interface IActivityPartake {
 
     /**
-     * TODO: 活动参与接口
+     * 参与活动
+     * @param req 参与活动请求
+     * @Return  领取结果
      */
-    void doPartake();
+
+    PartakeResult doPartake(PartakeReq req);
 }

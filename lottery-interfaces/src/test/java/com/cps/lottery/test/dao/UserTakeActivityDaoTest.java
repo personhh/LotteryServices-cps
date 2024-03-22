@@ -2,6 +2,7 @@ package com.cps.lottery.test.dao;
 
 import com.cps.lottery.infrastructure.dao.IUserTakeActivityDao;
 import com.cps.lottery.infrastructure.po.UserTakeActivity;
+import com.cps.lottery.infrastructure.po.UserTakeActivityCount;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.LoggerFactory;
@@ -29,13 +30,13 @@ public class UserTakeActivityDaoTest {
     @Test
     public void test_insert(){
         UserTakeActivity userTakeActivity = new UserTakeActivity();
-        userTakeActivity.setuId("0dl"); // 1库：Ukdli109op89oi 2库：Ukdli109op811d
+        userTakeActivity.setuId("0dl00"); // 1库：Ukdli109op89oi 2库：Ukdli109op811d
         userTakeActivity.setTakeId(121019889410L);
         userTakeActivity.setActivityId(100001L);
         userTakeActivity.setActivityName("测试活动");
         userTakeActivity.setTakeDate(new Date());
         userTakeActivity.setTakeCount(10);
-        userTakeActivity.setUuid("0dl");
+        userTakeActivity.setUuid("0dl00");
 
         userTakeActivityDao.insert(userTakeActivity);
     }
