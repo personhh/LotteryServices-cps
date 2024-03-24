@@ -10,7 +10,6 @@ import com.cps.lottery.rpc.dto.ActivityDto;
 import com.cps.lottery.rpc.req.ActivityReq;
 import com.cps.lottery.rpc.res.ActivityRes;
 import org.apache.dubbo.config.annotation.DubboService;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 

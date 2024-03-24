@@ -5,6 +5,10 @@ import com.cps.lottery.common.Result;
 import com.cps.lottery.domain.activity.model.req.PartakeReq;
 import com.cps.lottery.domain.activity.model.res.PartakeResult;
 import com.cps.lottery.domain.activity.model.vo.ActivityBillVO;
+import com.cps.lottery.domain.support.ids.IIdGenerator;
+
+import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * @author cps
@@ -14,12 +18,15 @@ import com.cps.lottery.domain.activity.model.vo.ActivityBillVO;
  */
 public abstract class BaseActivityPartake extends ActivityPartakeSupport implements  IActivityPartake {
 
+    @Resource
+    private Map<Constants.Ids, IIdGenerator> idGeneratorMap;
     @Override
     public PartakeResult doPartake(PartakeReq req) {
 
         //查询活动账单
         ActivityBillVO activityBillVO = super.queryActivityBill(req);
 
+        System.out.println(activityBillVO);
         //活动配置校验处理【活动库存、状态、日期、个人参与次数】
         Result checkResult = this.checkActivityBill(req, activityBillVO);
         if(!Constants.ResponseCode.SUCCESS.getCode().equals(checkResult.getCode())){
@@ -33,6 +40,8 @@ public abstract class BaseActivityPartake extends ActivityPartakeSupport impleme
         }
 
         //领取活动信息（个人用户把活动信息写入到用户表）
+
+        Long takeId = idGeneratorMap.get(Constants.Ids.SnowFlake).nextId();
         Result grabResult = this.grabActivity(req, activityBillVO);
         if(!Constants.ResponseCode.SUCCESS.getCode().equals(grabResult.getCode())){
             return new PartakeResult(subtractionActivityResult.getCode(),subtractionActivityResult.getInfo());
@@ -41,6 +50,7 @@ public abstract class BaseActivityPartake extends ActivityPartakeSupport impleme
         //封装结果（返回的策略ID，用于继续完成抽奖步骤）
         PartakeResult partakeResult = new PartakeResult(Constants.ResponseCode.SUCCESS.getCode(), Constants.ResponseCode.SUCCESS.getInfo());
         partakeResult.setStrategyId(activityBillVO.getStrategyId());
+        partakeResult.setTakeId(takeId);
         return partakeResult;
     }
 

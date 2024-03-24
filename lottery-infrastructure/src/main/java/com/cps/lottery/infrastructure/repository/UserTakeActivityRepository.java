@@ -1,14 +1,19 @@
 package com.cps.lottery.infrastructure.repository;
 
+import com.cps.lottery.domain.activity.model.vo.DrawOrderVO;
 import com.cps.lottery.domain.activity.repository.IUserTakeActivityRepository;
+import com.cps.lottery.infrastructure.dao.IUserStrategyExportDao;
 import com.cps.lottery.infrastructure.dao.IUserTakeActivityCountDao;
 import com.cps.lottery.infrastructure.dao.IUserTakeActivityDao;
+import com.cps.lottery.infrastructure.po.UserStrategyExport;
 import com.cps.lottery.infrastructure.po.UserTakeActivity;
 import com.cps.lottery.infrastructure.po.UserTakeActivityCount;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.ArrayDeque;
 import java.util.Date;
+import java.util.Queue;
 
 /**
  * @author cps
@@ -24,6 +29,11 @@ public class UserTakeActivityRepository implements IUserTakeActivityRepository {
 
     @Resource
     private IUserTakeActivityDao userTakeActivityDao;
+
+    @Resource
+    private IUserStrategyExportDao userStrategyExportDao;
+
+
     @Override
     public int subtractionLeftCount(Long activityId, String activityName, Integer takeCount, Integer userTakeLeftCount, String uId, Date partakeDate) {
         if(null == userTakeLeftCount){
@@ -61,5 +71,34 @@ public class UserTakeActivityRepository implements IUserTakeActivityRepository {
         userTakeActivity.setUuid(uuid);
 
         userTakeActivityDao.insert(userTakeActivity);
+    }
+
+    @Override
+    public int lockTackActivity(String uId, Long activityId, Long takeId) {
+        UserTakeActivity userTakeActivity = new UserTakeActivity();
+        userTakeActivity.setuId(uId);
+        userTakeActivity.setActivityId(activityId);
+        userTakeActivity.setTakeId(takeId);
+        return userTakeActivityDao.lockTackActivity(userTakeActivity);
+    }
+
+    @Override
+    public void saveUserStrategyExport(DrawOrderVO drawOrder) {
+        UserStrategyExport userStrategyExport = new UserStrategyExport();
+        userStrategyExport.setuId(drawOrder.getuId());
+        userStrategyExport.setActivityId(drawOrder.getActivityId());
+        userStrategyExport.setOrderId(drawOrder.getOrderId());
+        userStrategyExport.setStrategyId(drawOrder.getStrategyId());
+        userStrategyExport.setStrategyMode(drawOrder.getStrategyMode());
+        userStrategyExport.setGrantType(drawOrder.getGrantType());
+        userStrategyExport.setGrantDate(drawOrder.getGrantDate());
+        userStrategyExport.setGrantState(drawOrder.getGrantState());
+        userStrategyExport.setAwardId(drawOrder.getAwardId());
+        userStrategyExport.setAwardType(drawOrder.getAwardType());
+        userStrategyExport.setAwardName(drawOrder.getAwardName());
+        userStrategyExport.setAwardContent(drawOrder.getAwardContent());
+        userStrategyExport.setUuid(String.valueOf(drawOrder.getOrderId()));
+
+        userStrategyExportDao.insert(userStrategyExport);
     }
 }
