@@ -1,6 +1,7 @@
 package com.cps.lottery.infrastructure.repository;
 
 import com.cps.lottery.domain.activity.model.vo.DrawOrderVO;
+import com.cps.lottery.domain.activity.model.vo.UserTakeActivityVO;
 import com.cps.lottery.domain.activity.repository.IUserTakeActivityRepository;
 import com.cps.lottery.infrastructure.dao.IUserStrategyExportDao;
 import com.cps.lottery.infrastructure.dao.IUserTakeActivityCountDao;
@@ -100,5 +101,26 @@ public class UserTakeActivityRepository implements IUserTakeActivityRepository {
         userStrategyExport.setUuid(String.valueOf(drawOrder.getOrderId()));
 
         userStrategyExportDao.insert(userStrategyExport);
+    }
+
+    @Override
+    public UserTakeActivityVO queryNoConsumedTakeActivityOrder(Long activityId, String uId) {
+        UserTakeActivity userTakeActivity = new UserTakeActivity();
+        userTakeActivity.setuId(uId);
+        userTakeActivity.setActivityId(activityId);
+        UserTakeActivity noConsumedTakeActivityOrder = userTakeActivityDao.queryNoConsumedTakeActivityOrder(userTakeActivity);
+
+        // 未查询到符合的领取单，直接返回 NULL
+        if (null == noConsumedTakeActivityOrder) {
+            return null;
+        }
+
+        UserTakeActivityVO userTakeActivityVO = new UserTakeActivityVO();
+        userTakeActivityVO.setActivityId(noConsumedTakeActivityOrder.getActivityId());
+        userTakeActivityVO.setTakeId(noConsumedTakeActivityOrder.getTakeId());
+        userTakeActivityVO.setStrategyId(noConsumedTakeActivityOrder.getStrategyId());
+        userTakeActivityVO.setState(noConsumedTakeActivityOrder.getState());
+
+        return userTakeActivityVO;
     }
 }

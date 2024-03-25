@@ -1,6 +1,7 @@
 package com.cps.lottery.domain.activity.repository;
 
 import com.cps.lottery.domain.activity.model.vo.DrawOrderVO;
+import com.cps.lottery.domain.activity.model.vo.UserTakeActivityVO;
 
 import java.util.Date;
 
@@ -64,5 +65,5 @@ public interface IUserTakeActivityRepository {
      * @param uId           用户ID
      * @return              领取单
      */
-    // UserTakeActivityVO queryNoConsumedTakeActivityOrder(Long activityId, String uId);
+     UserTakeActivityVO queryNoConsumedTakeActivityOrder(Long activityId, String uId);
 }
