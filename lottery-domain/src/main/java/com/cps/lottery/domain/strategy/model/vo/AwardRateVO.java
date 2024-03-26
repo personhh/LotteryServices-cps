@@ -8,7 +8,7 @@ import java.math.BigDecimal;
  * @date 2024/3/9 21:10
  * @OtherDescription: Other things
  */
-public class AwardRateInfo {
+public class AwardRateVO {
 
     /**奖品id*/
     private String awardId;
@@ -16,7 +16,7 @@ public class AwardRateInfo {
     /**中奖概率*/
     private BigDecimal awardRate;
 
-    public AwardRateInfo(String awardId, BigDecimal awardRate) {
+    public AwardRateVO(String awardId, BigDecimal awardRate) {
         this.awardId = awardId;
         this.awardRate = awardRate;
     }

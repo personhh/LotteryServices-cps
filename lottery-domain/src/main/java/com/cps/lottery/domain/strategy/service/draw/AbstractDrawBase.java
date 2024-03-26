@@ -1,7 +1,6 @@
 package com.cps.lottery.domain.strategy.service.draw;
 
 import com.cps.lottery.common.Constants;
-import com.cps.lottery.domain.activity.model.vo.StrategyVO;
 import com.cps.lottery.domain.strategy.model.aggregates.StrategyRich;
 import com.cps.lottery.domain.strategy.model.req.DrawReq;
 import com.cps.lottery.domain.strategy.model.res.DrawResult;
@@ -12,7 +11,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 /**
  * @author cps
@@ -51,11 +49,8 @@ public abstract class AbstractDrawBase extends DrawStrategySupport implements ID
      * 校验抽奖策略是否已经初始化到内存
      * */
     public void checkAndInitRateData(Long strategyId, Integer strategyMode, List<StrategyDetailBriefVO> strategyDetailList){
-        //判断是不是必中奖策略
-        if(!Constants.StrategyMode.SINGLE.getCode().equals(strategyMode)){
-            return;
-        }
-        //如果是必中奖策略，就进行初始化
+
+        //初始化抽奖策略
         IDrawAlgorithm drawAlgorithm = drawAlgorithmMap.get(strategyMode);
 
         //判断是否初始化
@@ -64,18 +59,18 @@ public abstract class AbstractDrawBase extends DrawStrategySupport implements ID
         }
 
         //没有就开始初始化
-        List<AwardRateInfo> awardRateInfoList = new ArrayList<>(strategyDetailList.size());
+        List<AwardRateVO> awardRateVOList = new ArrayList<>(strategyDetailList.size());
 
         //遍历所有策略明细
         for(StrategyDetailBriefVO strategyDetail : strategyDetailList){
             //通过所有策略明细获得对应的奖品概率信息
-            AwardRateInfo awardRateInfo = new AwardRateInfo(strategyDetail.getAwardId(), strategyDetail.getAwardRate());
+            AwardRateVO awardRateVO = new AwardRateVO(strategyDetail.getAwardId(), strategyDetail.getAwardRate());
             //放入到奖品概率信息列表
-            awardRateInfoList.add(awardRateInfo);
+            awardRateVOList.add(awardRateVO);
         }
 
         //对这个策略中元祖进行初始化，通过列表中的奖品概率信息来初始化元祖中概率区间
-        drawAlgorithm.initRateTuple(strategyId, awardRateInfoList);
+        drawAlgorithm.initRateTuple(strategyId, strategyMode, awardRateVOList);
     }
 
     /**
@@ -98,7 +93,7 @@ public abstract class AbstractDrawBase extends DrawStrategySupport implements ID
         }
 
         AwardBriefVO award = super.queryAwardInfoByAwardId(awardId);
-        DrawAwardInfo drawAwardInfo = new DrawAwardInfo(award.getAwardId(), award.getAwardType(), award.getAwardName(), award.getAwardContent());
+        DrawAwardVO drawAwardInfo = new DrawAwardVO(uId, award.getAwardId(), award.getAwardType(), award.getAwardName(), award.getAwardContent());
         drawAwardInfo.setStrategyMode(strategy.getStrategyMode());
         drawAwardInfo.setGrantType(strategy.getGrantType());
         drawAwardInfo.setGrantDate(strategy.getGrantDate());

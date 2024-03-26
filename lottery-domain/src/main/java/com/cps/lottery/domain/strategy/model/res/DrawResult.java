@@ -2,6 +2,7 @@ package com.cps.lottery.domain.strategy.model.res;
 
 import com.cps.lottery.common.Constants;
 import com.cps.lottery.domain.strategy.model.vo.DrawAwardInfo;
+import com.cps.lottery.domain.strategy.model.vo.DrawAwardVO;
 
 /**
  * @author cps
@@ -18,7 +19,7 @@ public class DrawResult {
 
     private Integer drawState = Constants.DrawState.FAIL.getCode();
 
-    private DrawAwardInfo drawAwardInfo;
+    private DrawAwardVO drawAwardVO;
 
     public DrawResult(String uId, Long strategyId, Integer drawState){
         this.uId = uId;
@@ -28,11 +29,11 @@ public class DrawResult {
 
 
 
-    public DrawResult(String uId, Long strategyId, Integer drawState, DrawAwardInfo drawAwardInfo) {
+    public DrawResult(String uId, Long strategyId, Integer drawState, DrawAwardVO drawAwardVO) {
         this.uId = uId;
         this.strategyId = strategyId;
         this.drawState = drawState;
-        this.drawAwardInfo = drawAwardInfo;
+        this.drawAwardVO = drawAwardVO;
     }
 
     public String getuId() {
@@ -59,11 +60,11 @@ public class DrawResult {
         this.drawState = drawState;
     }
 
-    public DrawAwardInfo getDrawAwardInfo() {
-        return drawAwardInfo;
+    public DrawAwardVO getDrawAwardVO() {
+        return drawAwardVO;
     }
 
-    public void setDrawAwardInfo(DrawAwardInfo drawAwardInfo) {
-        this.drawAwardInfo = drawAwardInfo;
+    public void setDrawAwardVO(DrawAwardVO drawAwardVO) {
+        this.drawAwardVO = drawAwardVO;
     }
 }

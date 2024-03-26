@@ -1,6 +1,6 @@
 package com.cps.lottery.domain.strategy.service.algorithm;
 
-import com.cps.lottery.domain.strategy.model.vo.AwardRateInfo;
+import com.cps.lottery.domain.strategy.model.vo.AwardRateVO;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public interface IDrawAlgorithm {
     /**
      * 程序启动时初始化概率元祖，在初始化完成后使用过程中不允许修改元祖数据
      */
-    void initRateTuple(Long strategyId, List<AwardRateInfo> awardRateInfoList);
+    void initRateTuple(Long strategyId, Integer strategyMode, List<AwardRateVO> awardRateVOList);
 
     /**
      * 判断是否已经，做了数据初始化
