@@ -18,6 +18,7 @@ import javax.annotation.Resource;
  * @date 2024/3/28 11:57
  * @OtherDescription: Other things
  */
+
 @Component
 public class KafkaProducer {
 
