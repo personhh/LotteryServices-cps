@@ -1,5 +1,6 @@
 package com.cps.lottery.infrastructure.repository;
 
+import com.cps.lottery.common.Constants;
 import com.cps.lottery.domain.activity.model.vo.DrawOrderVO;
 import com.cps.lottery.domain.activity.model.vo.UserTakeActivityVO;
 import com.cps.lottery.domain.activity.repository.IUserTakeActivityRepository;
@@ -62,12 +63,12 @@ public class UserTakeActivityRepository implements IUserTakeActivityRepository {
         userTakeActivity.setActivityName(activityName);
         userTakeActivity.setTakeDate(takeDate);
         userTakeActivity.setStrategyId(strategyId);
-        userTakeActivity.setState(state);
         if (null == userTakeLeftCount) {
             userTakeActivity.setTakeCount(1);
         } else {
             userTakeActivity.setTakeCount(takeCount - userTakeLeftCount);
         }
+        userTakeActivity.setState(Constants.TaskState.NO_USED.getCode());
         String uuid = uId + "_" + activityId + "_" + userTakeActivity.getTakeCount();
         userTakeActivity.setUuid(uuid);
 
@@ -122,5 +123,14 @@ public class UserTakeActivityRepository implements IUserTakeActivityRepository {
         userTakeActivityVO.setState(noConsumedTakeActivityOrder.getState());
 
         return userTakeActivityVO;
+    }
+
+    @Override
+    public void updateInvoiceMqState(String uId, Long orderId, Integer mqState) {
+        UserStrategyExport userStrategyExport = new UserStrategyExport();
+        userStrategyExport.setuId(uId);
+        userStrategyExport.setOrderId(orderId);
+        userStrategyExport.setMqState(mqState);
+        userStrategyExportDao.updateInvoiceMqState(userStrategyExport);
     }
 }

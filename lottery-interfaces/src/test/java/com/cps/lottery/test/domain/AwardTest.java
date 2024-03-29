@@ -54,7 +54,7 @@ public class AwardTest {
 
         //发奖参数，orderId属于模拟ID，在用户领奖的时候时生成
         DrawAwardVO drawAwardInfo = drawResult.getDrawAwardVO();
-        GoodsReq goodsReq = new GoodsReq(drawResult.getuId(), "21024920081392", drawAwardInfo.getAwardId(), drawAwardInfo.getAwardName(), drawAwardInfo.getAwardContent());
+        GoodsReq goodsReq = new GoodsReq(drawResult.getuId(), 21024920081392L, drawAwardInfo.getAwardId(), drawAwardInfo.getAwardName(), drawAwardInfo.getAwardContent());
 
         //根据awardType从抽奖工程中获取对应的发奖服务
         IDistributionGoods distributionGoodsService = distributionGoodsFactory.getDistributionGoodsService(drawAwardInfo.getAwardType());

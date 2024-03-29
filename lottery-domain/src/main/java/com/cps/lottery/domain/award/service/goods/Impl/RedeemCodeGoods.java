@@ -19,7 +19,7 @@ public class RedeemCodeGoods extends DistributionBase implements IDistributionGo
     public DistributionRes doDistribution(GoodsReq req) {
         logger.info("模拟兑换码商品发放接口 uId: {} awardContent: {}", req.getuId(),req.getAwardContent());
 
-        super.updateUserAwardState(req.getuId(), req.getOrderId(), req.getAwardId(), Constants.AwardState.SUCCESS.getCode(), Constants.AwardState.SUCCESS.getInfo());
+        super.updateUserAwardState(req.getuId(), req.getOrderId(), req.getAwardId(), Constants.GrantState.COMPLETE.getCode());
 
         return new DistributionRes(req.getuId(), Constants.AwardState.SUCCESS.getCode(), Constants.AwardState.SUCCESS.getInfo());
     }

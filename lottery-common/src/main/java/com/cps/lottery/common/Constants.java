@@ -70,6 +70,39 @@ public class Constants {
         }
     }
 
+    /**
+     * 活动单使用状态 0未使用、1已使用
+     */
+    public enum TaskState {
+
+        NO_USED(0, "未使用"),
+        USED(1, "已使用");
+
+        private Integer code;
+        private String info;
+
+        TaskState(Integer code, String info) {
+            this.code = code;
+            this.info = info;
+        }
+
+        public Integer getCode() {
+            return code;
+        }
+
+        public void setCode(Integer code) {
+            this.code = code;
+        }
+
+        public String getInfo() {
+            return info;
+        }
+
+        public void setInfo(String info) {
+            this.info = info;
+        }
+    }
+
 
     /** 中奖状态：0未中奖、1已中奖、2兜底奖  */
     public enum DrawState{
@@ -320,4 +353,36 @@ public class Constants {
         public static final int ENUM = 6;
     }
 
+    /**
+     * 消息发送状态（0未发送、1发送成功、2发送失败）
+     */
+    public enum MQState {
+        INIT(0, "初始"),
+        COMPLETE(1, "完成"),
+        FAIL(2, "失败");
+
+        private Integer code;
+        private String info;
+
+        MQState(Integer code, String info) {
+            this.code = code;
+            this.info = info;
+        }
+
+        public Integer getCode() {
+            return code;
+        }
+
+        public void setCode(Integer code) {
+            this.code = code;
+        }
+
+        public String getInfo() {
+            return info;
+        }
+
+        public void setInfo(String info) {
+            this.info = info;
+        }
+    }
 }

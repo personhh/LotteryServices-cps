@@ -1,6 +1,8 @@
 package com.cps.lottery.test.application;
 
-import com.cps.lottery.application.mq.KafkaProducer;
+import com.cps.lottery.application.mq.producer.KafkaProducer;
+import com.cps.lottery.common.Constants;
+import com.cps.lottery.domain.activity.model.vo.InvoiceVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -12,7 +14,7 @@ import javax.annotation.Resource;
 
 /**
  * @author cps
- * @description: TODO
+ * @description: kafka基础测试
  * @date 2024/3/27 16:04
  * @OtherDescription: Other things
  */
@@ -27,11 +29,21 @@ public class KafkaProducerTest {
     private KafkaProducer kafkaProducer;
 
     @Test
-    public void test_send() throws InterruptedException {
-        // 循环发送消息
-        while (true) {
-            kafkaProducer.send("你好，我是Lottery 001");
-            Thread.sleep(3500);
+    public void test_send() throws InterruptedException{
+
+        InvoiceVO invoice = new InvoiceVO();
+        invoice.setuId("Uhdgkw766120d");
+        invoice.setOrderId(1444540456057864192L);
+        invoice.setAwardId("3");
+        invoice.setAwardType(Constants.AwardType.DESC.getCode());
+        invoice.setAwardName("Code");
+        invoice.setAwardContent("苹果电脑");
+        invoice.setShippingAddress(null);
+        invoice.setExtInfo(null);
+
+        kafkaProducer.sendLotteryInvoice(invoice);
+        while(true){
+            Thread.sleep(10000);
         }
     }
 }

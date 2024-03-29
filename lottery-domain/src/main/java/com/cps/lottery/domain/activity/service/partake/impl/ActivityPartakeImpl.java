@@ -6,6 +6,7 @@ import com.cps.lottery.common.Result;
 import com.cps.lottery.domain.activity.model.req.PartakeReq;
 import com.cps.lottery.domain.activity.model.vo.ActivityBillVO;
 import com.cps.lottery.domain.activity.model.vo.DrawOrderVO;
+import com.cps.lottery.domain.activity.model.vo.UserTakeActivityVO;
 import com.cps.lottery.domain.activity.repository.IUserTakeActivityRepository;
 import com.cps.lottery.domain.activity.service.partake.BaseActivityPartake;
 import com.cps.lottery.domain.support.ids.IIdGenerator;
@@ -139,4 +140,15 @@ public class ActivityPartakeImpl extends BaseActivityPartake {
             dbRouter.clear();
         }
     }
+
+    @Override
+    public void updateInvoiceMqState(String uId, Long orderId, Integer mqState) {
+        userTakeActivityRepository.updateInvoiceMqState(uId, orderId, mqState);
+    }
+
+    @Override
+    protected UserTakeActivityVO queryNoConsumedTakeActivityOrder(Long activityId, String uId) {
+        return userTakeActivityRepository.queryNoConsumedTakeActivityOrder(activityId, uId);
+    }
+
 }

@@ -37,6 +37,8 @@ public class UserStrategyExport {
     private String awardContent;
     /** 防重ID */
     private String uuid;
+    /** 消息发送状态（0，未发送，1发送成功，2发送失败）*/
+    private Integer mqState;
     /** 创建时间 */
     private Date createTime;
     /** 更新时间 */
@@ -168,5 +170,13 @@ public class UserStrategyExport {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Integer getMqState() {
+        return mqState;
+    }
+
+    public void setMqState(Integer mqState) {
+        this.mqState = mqState;
     }
 }
