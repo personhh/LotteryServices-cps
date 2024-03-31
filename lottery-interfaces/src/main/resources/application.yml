@@ -63,12 +63,12 @@ mini-db-router:
         username: root
         password: 52ni1314
       db01:
-        driver-class-name: com.mysql.jdbc.Driver
+        driver-class-name: com.mysql.cj.jdbc.Driver
         url: jdbc:mysql://127.0.0.1:3306/lottery_01?useUnicode=true
         username: root
         password: 52ni1314
       db02:
-        driver-class-name: com.mysql.jdbc.Driver
+        driver-class-name: com.mysql.cj.jdbc.Driver
         url: jdbc:mysql://127.0.0.1:3306/lottery_02?useUnicode=true
         username: root
         password: 52ni1314
@@ -88,3 +88,21 @@ dubbo:
 
   scan: #相当Spring中自动扫描包的地址，可以把此包下的所以rpc接口都注册到服务中
     base-packages: com.cps.lottery.rpc
+
+# xxl-job
+# 官网：https://github.com/xuxueli/xxl-job/
+# 地址：http://localhost:7397/xxl-job-admin 【需要先启动 xxl-job】
+# 账号：admin
+# 密码：123456
+xxl:
+  job:
+    admin:
+      addresses: http://127.20.10.3:7397/xxl-job-admin
+    executor:
+      address:
+      appname: lottery-job
+      ip:
+      port: 9999
+      logpath: /Users/cps/xxl_job/data/applogs/xxl-job/jobhandler
+      logretentiondays: 30
+    accessToken:
