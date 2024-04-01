@@ -58,7 +58,7 @@ mini-db-router:
       routerKey: uId
       list: db01,db02
       db00:
-        driver-class-name: com.mysql.jdbc.Driver
+        driver-class-name: com.mysql.cj.jdbc.Driver
         url: jdbc:mysql://127.0.0.1:3306/lottery?useUnicode=true
         username: root
         password: 52ni1314
@@ -101,8 +101,7 @@ xxl:
     executor:
       address:
       appname: lottery-job
-      ip:
+      ip: 127.20.10.3
       port: 9999
-      logpath: /Users/cps/xxl_job/data/applogs/xxl-job/jobhandler
-      logretentiondays: 30
-    accessToken:
+      logpath: /Users/cps/xxl_job/data/applogs/xxl-job/jobhandler #日志保留地址
+      logretentiondays: 50 #日志保留天数

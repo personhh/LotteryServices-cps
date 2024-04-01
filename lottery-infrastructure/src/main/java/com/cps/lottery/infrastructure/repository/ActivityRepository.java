@@ -113,7 +113,6 @@ public class ActivityRepository implements IActivityRepository {
     @Override
     public List<ActivityVO> scanToDoActivityList(Long id) {
         List<Activity> activityList = activityDao.scanToDoActivityList(id);
-        System.out.println(activityList);
         List<ActivityVO> activityVOList = new ArrayList<>(activityList.size());
         for (Activity activity : activityList) {
             ActivityVO activityVO = new ActivityVO();

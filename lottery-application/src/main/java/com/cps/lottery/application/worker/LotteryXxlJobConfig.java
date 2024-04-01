@@ -21,8 +21,8 @@ public class LotteryXxlJobConfig {
     @Value("${xxl.job.admin.addresses}")
     private String adminAddresses;
 
-    @Value("${xxl.job.accessToken}")
-    private String accessToken;
+    /*@Value("${xxl.job.accessToken}")
+    private String accessToken;*/
 
     @Value("${xxl.job.executor.appname}")
     private String appname;
@@ -52,7 +52,7 @@ public class LotteryXxlJobConfig {
         xxlJobSpringExecutor.setAddress(address);
         xxlJobSpringExecutor.setIp(ip);
         xxlJobSpringExecutor.setPort(port);
-        xxlJobSpringExecutor.setAccessToken(accessToken);
+        //xxlJobSpringExecutor.setAccessToken(accessToken);
         xxlJobSpringExecutor.setLogPath(logPath);
         xxlJobSpringExecutor.setLogRetentionDays(logRetentionDays);
 

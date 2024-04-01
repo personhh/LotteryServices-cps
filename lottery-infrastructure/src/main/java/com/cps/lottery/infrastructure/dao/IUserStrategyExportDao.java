@@ -7,6 +7,8 @@ import com.cps.lottery.infrastructure.po.UserStrategyExport;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * @author cps
  * @description: TODO
@@ -48,4 +50,10 @@ public interface IUserStrategyExportDao {
      */
     @DBRouter
     void updateInvoiceMqState(UserStrategyExport userStrategyExport);
+
+    /**
+     * 扫描发货单 MQ 状态，把未发送 MQ 的单子扫描出来，做赔偿
+     * @return 发货单
+     */
+    List<UserStrategyExport> scanInvoiceMqState();
 }
