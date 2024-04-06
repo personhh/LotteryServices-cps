@@ -4,10 +4,8 @@ import cn.bugstack.middleware.db.router.strategy.IDBRouterStrategy;
 import com.cps.lottery.common.Constants;
 import com.cps.lottery.common.Result;
 import com.cps.lottery.domain.activity.model.req.PartakeReq;
-import com.cps.lottery.domain.activity.model.vo.ActivityBillVO;
-import com.cps.lottery.domain.activity.model.vo.DrawOrderVO;
-import com.cps.lottery.domain.activity.model.vo.InvoiceVO;
-import com.cps.lottery.domain.activity.model.vo.UserTakeActivityVO;
+import com.cps.lottery.domain.activity.model.res.StockResult;
+import com.cps.lottery.domain.activity.model.vo.*;
 import com.cps.lottery.domain.activity.repository.IUserTakeActivityRepository;
 import com.cps.lottery.domain.activity.service.partake.BaseActivityPartake;
 import com.cps.lottery.domain.support.ids.IIdGenerator;
@@ -82,6 +80,11 @@ public class ActivityPartakeImpl extends BaseActivityPartake {
             return Result.buildResult(Constants.ResponseCode.NO_UPDATE);
         }
         return Result.buildSuccessResult();
+    }
+
+    @Override
+    protected StockResult subtractionActivityStockByRedis(String uId, Long activityId, Integer stockCount) {
+       return activityRepository.subtractionActivityStockByRedis(uId, activityId, stockCount);
     }
 
     @Override
@@ -165,5 +168,15 @@ public class ActivityPartakeImpl extends BaseActivityPartake {
         }finally {
             dbRouter.clear();
         }
+    }
+
+    @Override
+    protected void recoverActivityCacheStockByRedis(Long activityId, String tokenKey, String code) {
+        activityRepository.recoverActivityCacheStockByRedis(activityId, tokenKey, code);
+    }
+
+    @Override
+    public void updateActivityStock(ActivityPartakeRecordVO activityPartakeRecordVO) {
+        userTakeActivityRepository.updateActivityStock(activityPartakeRecordVO);
     }
 }

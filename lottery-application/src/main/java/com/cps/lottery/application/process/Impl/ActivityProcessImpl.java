@@ -9,6 +9,7 @@ import com.cps.lottery.common.Constants;
 import com.cps.lottery.common.Result;
 import com.cps.lottery.domain.activity.model.req.PartakeReq;
 import com.cps.lottery.domain.activity.model.res.PartakeResult;
+import com.cps.lottery.domain.activity.model.vo.ActivityPartakeRecordVO;
 import com.cps.lottery.domain.activity.model.vo.DrawOrderVO;
 import com.cps.lottery.domain.activity.model.vo.InvoiceVO;
 import com.cps.lottery.domain.activity.service.partake.IActivityPartake;
@@ -62,6 +63,16 @@ public class ActivityProcessImpl implements IActivityProcess {
             return new DrawProcessResult(partakeResult.getCode(), partakeResult.getInfo());
         }
 
+        // 2. 首次成功领取活动，发送 MQ 消息
+        if (Constants.ResponseCode.SUCCESS.getCode().equals(partakeResult.getCode())) {
+            ActivityPartakeRecordVO activityPartakeRecord = new ActivityPartakeRecordVO();
+            activityPartakeRecord.setuId(req.getuId());
+            activityPartakeRecord.setActivityId(req.getActivityId());
+            activityPartakeRecord.setStockCount(partakeResult.getStockCount());
+            activityPartakeRecord.setStockSurplusCount(partakeResult.getStockSurplusCount());
+            // 发送 MQ 消息
+            kafkaProducer.sendLotteryActivityPartakeRecord(activityPartakeRecord);
+        }
         //2.执行抽奖
         Long strategyId = partakeResult.getStrategyId();
         Long takeId = partakeResult.getTakeId();

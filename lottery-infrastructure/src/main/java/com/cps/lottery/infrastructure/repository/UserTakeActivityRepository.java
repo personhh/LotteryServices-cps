@@ -1,13 +1,16 @@
 package com.cps.lottery.infrastructure.repository;
 
 import com.cps.lottery.common.Constants;
+import com.cps.lottery.domain.activity.model.vo.ActivityPartakeRecordVO;
 import com.cps.lottery.domain.activity.model.vo.DrawOrderVO;
 import com.cps.lottery.domain.activity.model.vo.InvoiceVO;
 import com.cps.lottery.domain.activity.model.vo.UserTakeActivityVO;
 import com.cps.lottery.domain.activity.repository.IUserTakeActivityRepository;
+import com.cps.lottery.infrastructure.dao.IActivityDao;
 import com.cps.lottery.infrastructure.dao.IUserStrategyExportDao;
 import com.cps.lottery.infrastructure.dao.IUserTakeActivityCountDao;
 import com.cps.lottery.infrastructure.dao.IUserTakeActivityDao;
+import com.cps.lottery.infrastructure.po.Activity;
 import com.cps.lottery.infrastructure.po.UserStrategyExport;
 import com.cps.lottery.infrastructure.po.UserTakeActivity;
 import com.cps.lottery.infrastructure.po.UserTakeActivityCount;
@@ -33,6 +36,9 @@ public class UserTakeActivityRepository implements IUserTakeActivityRepository {
 
     @Resource
     private IUserStrategyExportDao userStrategyExportDao;
+
+    @Resource
+    private IActivityDao activityDao;
 
 
     @Override
@@ -150,5 +156,13 @@ public class UserTakeActivityRepository implements IUserTakeActivityRepository {
             invoiceVOList.add(invoiceVO);
         }
         return invoiceVOList;
+    }
+
+    @Override
+    public void updateActivityStock(ActivityPartakeRecordVO activityPartakeRecordVO) {
+        Activity activity = new Activity();
+        activity.setActivityId(activityPartakeRecordVO.getActivityId());
+        activity.setStockSurplusCount(activityPartakeRecordVO.getStockSurplusCount());
+        activityDao.updateActivityStock(activity);
     }
 }

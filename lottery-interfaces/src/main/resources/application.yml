@@ -40,6 +40,19 @@ spring:
       #listner负责ack，每调用一次，就立即commit
       ack-mode: manual_immediate
       missing-topics-fatal: false
+        # Redis 云服务器搭建后配置并重启 【否则会 Unable to connect to 39.96.*.*:6379】
+        # 防火墙放行：firewall-cmd --zone=public --add-port=6379/tcp --permanent
+        # 防火墙重启：firewall-cmd --reload
+      # redis.conf 注释掉 bind 127.0.0.1
+      # redis.conf protected-mode yes 改为 protected-mode no
+  redis:
+    database: 0
+    host: 127.0.0.1      # Redis服务器地址，修改为你的地址
+    port: 6379              # Redis服务器连接端口
+    password: 52ni1314          # Redis服务器连接密码（默认为空）
+    timeout: 3000           # Redis服务器链接超时配置
+
+
 
 mybatis:
     mapper-locations: classpath:/mybatis/mapper/*.xml
