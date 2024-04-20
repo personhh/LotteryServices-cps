@@ -57,7 +57,8 @@ RPC接口定义（lottery-rpc）：描述RPC接口文件，用于打包后外部
 
 ### 四.工程流程图
 
-<img src="/Applications/mac_doc/Java笔记/Lottery项目/流程图+工程图/Lottery_cps工程总图.png" alt="Lottery_cps工程总图" style="zoom:50%;" />
+<img width="918" alt="Lottery_cps工程总图" src="https://github.com/personhh/LotteryServices-cps/assets/139620514/8f637f06-c397-4619-9cca-de1620d53701">
+
 
 
 
